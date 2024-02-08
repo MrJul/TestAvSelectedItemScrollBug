@@ -1,0 +1,34 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:vm="using:TestAvSelectedItemScrollBug.ViewModels"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        x:Class="TestAvSelectedItemScrollBug.Views.MainWindow"
+        x:DataType="vm:MainWindowViewModel"
+        Title="TestAvSelectedItemScrollBug">
+
+    <Design.DataContext>
+        <vm:MainWindowViewModel/>
+    </Design.DataContext>
+
+    <Grid RowDefinitions="Auto,Auto,*" Margin="8">
+
+        <StackPanel Orientation="Horizontal" Spacing="8" Grid.Row="0">
+            <Button Content="Load" Command="{Binding LoadCommand}" />
+            <Button Content="Clear" Command="{Binding ClearCommand}" />
+        </StackPanel>
+
+        <CheckBox Content="Visible ListBox"
+                  IsChecked="{Binding #ListBox.IsVisible}"
+                  Grid.Row="1" />
+
+        <ListBox x:Name="ListBox"
+                 ItemsSource="{Binding Items}"
+                 SelectedItem="{Binding SelectedItem}"
+                 AutoScrollToSelectedItem="True"
+                 Grid.Row="2" />
+
+    </Grid>
+
+</Window>
